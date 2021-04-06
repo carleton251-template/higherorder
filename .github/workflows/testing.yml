@@ -1,0 +1,43 @@
+name: Assignment automated tests
+
+on: [push]
+
+jobs:
+  no-tests-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    if: "!startsWith(github.event.head_commit.message, 'E:') &&
+         !startsWith(github.event.head_commit.message, 'M:')"
+    steps:
+      - name: No tests run
+        run: |
+          exit 1
+
+  meets-expectations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    if: "startsWith(github.event.head_commit.message, 'M:')"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Guile
+        run: |
+          sudo apt-get -qq install guile-2.2
+      - name: Run M Tests
+        run: |
+          echo "M tests"
+          ./test-m
+
+  meets-and-exemplary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    if: "startsWith(github.event.head_commit.message, 'E:')"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Guile
+        run: |
+          sudo apt-get -qq install guile-2.2
+      - name: Run M and E Tests
+        run: |
+          echo "M tests first, E tests will run if E succeeds"
+          ./test-m
+          ./test-e
