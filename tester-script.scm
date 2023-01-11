@@ -30,6 +30,8 @@
 (test-runner-factory
  (lambda () (my-simple-runner)))
 
+(test-runner-current (test-runner-create))
+
 (define test-file-name (cadr (command-line)))
 
 (test-begin "test suite")
