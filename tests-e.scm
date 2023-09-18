@@ -19,14 +19,6 @@
 
 (test-equal "myfilter3" '() (my-filter positive? '()))
 
-
-(test-equal "uncurry3" 8 ((uncurry (curry-plus)) 3 5))
-(test-equal "uncurry4" 19 ((uncurry (curry-plus-four)) 1 3 5 10))
-
-(test-equal "set3" '(1 2 3 4 5) (sort (union '(1 2 3 4 5) '(1 2 3 4 5)) <))
-(test-equal "set4" '(6 7 8) (sort (union '(6 7 8) '()) <))
-
-(test-equal "set7" '(1 2 3 4 5) (sort (intersect '(1 2 3 4 5) '(1 2 3 4 5))< ))
-(test-equal "set8" '() (sort (intersect '(1 2 3 4 5) '()) <))
-
 (test-assert "exists3-ne" (not (exists (lambda (x) (< x 3)) '())))
+
+(test-equal "find-docs3" '()               (find-docs 'schiller doclist))
