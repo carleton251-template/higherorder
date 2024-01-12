@@ -13,10 +13,10 @@
 (test-equal "exists1" #t (exists (lambda (x) (< x 3)) '(9 2 1 8 7)))
 (test-equal "exists2" #t (not (exists (lambda (x) (< x -5)) '(-1 0 1))))
 
-(define doclist '((cs (Welcome to the Carleton CS department))
+(let ((doclist '((cs (Welcome to the Carleton CS department))
                   (art (The department consists of two separate majors))
                   (geology (The geology department retains a spirit of exploration))
-                  (president (Alison R Byerly is Carleton College’s 12th president))))
+                  (president (Alison R Byerly is Carleton College’s 12th president)))))
 
-(test-equal "find-docs1" '(cs art geology) (find-docs 'department doclist))
-(test-equal "find-docs2" '(cs president)   (find-docs 'Carleton doclist))
+  (test-equal "find-docs1" '(cs art geology) (find-docs 'department doclist))
+  (test-equal "find-docs2" '(cs president)   (find-docs 'Carleton doclist)))
